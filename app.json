@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "khadamati-app",
-    "slug": "khadamati-app",
+    "name": "khidama-app",
+    "slug": "khidama-app",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -27,10 +27,16 @@
       [
         "expo-splash-screen",
         {
-          "image": "./assets/images/splash-icon.png",
+          "image": "./assets/images/logo.png",
           "imageWidth": 200,
           "resizeMode": "contain",
           "backgroundColor": "#ffffff"
+        }
+      ],
+      [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermission": "Allow Khidma to use your location."
         }
       ]
     ],
