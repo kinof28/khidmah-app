@@ -12,6 +12,9 @@ import "react-native-reanimated";
 import "../global.css";
 
 import { useColorScheme } from "@/hooks/useColorScheme";
+import { i18n } from "@/translations";
+import { getLocales } from "expo-localization";
+import { useLanguageStore } from "@/store";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -21,8 +24,10 @@ export default function RootLayout() {
   const [loaded] = useFonts({
     SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
   });
-
+  const { language, setLanguage } = useLanguageStore();
   useEffect(() => {
+    i18n.enableFallback = true;
+    setLanguage(getLocales()[0].languageCode ?? "en");
     if (loaded) {
       SplashScreen.hideAsync();
     }
