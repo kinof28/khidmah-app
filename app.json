@@ -39,7 +39,8 @@
           "locationAlwaysAndWhenInUsePermission": "Allow Khidma to use your location."
         }
       ],
-      "expo-localization"
+      "expo-localization",
+      "expo-secure-store"
     ],
     "experiments": {
       "typedRoutes": true
