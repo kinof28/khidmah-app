@@ -22,7 +22,16 @@ SplashScreen.preventAutoHideAsync();
 export default function RootLayout() {
   const colorScheme = useColorScheme();
   const [loaded] = useFonts({
-    SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
+    // SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
+    "Alexandria-Black": require("../assets/fonts/Alexandria-Black.ttf"),
+    "Alexandria-Bold": require("../assets/fonts/Alexandria-Bold.ttf"),
+    "Alexandria-ExtraBold": require("../assets/fonts/Alexandria-ExtraBold.ttf"),
+    "Alexandria-ExtraLight": require("../assets/fonts/Alexandria-ExtraLight.ttf"),
+    "Alexandria-Light": require("../assets/fonts/Alexandria-Light.ttf"),
+    "Alexandria-Medium": require("../assets/fonts/Alexandria-Medium.ttf"),
+    "Alexandria-Regular": require("../assets/fonts/Alexandria-Regular.ttf"),
+    "Alexandria-SemiBold": require("../assets/fonts/Alexandria-SemiBold.ttf"),
+    "Alexandria-Thin": require("../assets/fonts/Alexandria-Thin.ttf"),
   });
   const { language, setLanguage } = useLanguageStore();
   useEffect(() => {
