@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "khidama-app",
-    "slug": "khidama-app",
+    "name": "khidma-app",
+    "slug": "khidma-app",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
