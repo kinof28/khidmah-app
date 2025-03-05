@@ -5,8 +5,10 @@ import { Redirect } from "expo-router";
 import { useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { i18n } from "@/translations";
+import { icons } from "@/constants";
 
-//Todo: fix the ui
+//Todo: fix
+//Todo: This screen should be displayed only when we don't have location permissions
 const AskForLocation = () => {
   const { setLocation } = useLocationStore();
   const [granted, setGranted] = useState(false);
@@ -34,7 +36,7 @@ const AskForLocation = () => {
       <View className="flex-1/2 justify-center items-center">
         <Image
           className="h-40 w-40 "
-          source={require("@/assets/images/location.png")}
+          source={icons.LocationSVG}
           height={100}
           width={100}
         />
