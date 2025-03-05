@@ -1,8 +1,10 @@
-import { Text, TouchableOpacity, View } from "react-native";
+import { Image, Text, TouchableOpacity, View } from "react-native";
 import * as Location from "expo-location";
 import { useLocationStore } from "@/store";
 import { Redirect } from "expo-router";
 import { useEffect, useState } from "react";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { i18n } from "@/translations";
 
 //Todo: fix the ui
 const AskForLocation = () => {
@@ -16,20 +18,38 @@ const AskForLocation = () => {
       return;
     }
     const location = await Location.getCurrentPositionAsync({});
-    // console.log(location);
     setLocation(location.coords.latitude, location.coords.longitude);
     setGranted(true);
   };
   return !granted ? (
-    <View className="flex-1 items-center justify-center bg-white">
-      <Text className="text-red-600 text-3xl">Ask for location</Text>
-      <TouchableOpacity
-        className="p-4 text-xl bg-slate-500 mt-3 rounded"
-        onPress={getLocation}
-      >
-        <Text className="text-white font-bold text-xl">Ask for location</Text>
-      </TouchableOpacity>
-    </View>
+    <SafeAreaView className="flex-1 justify-start bg-primary-400 py-20">
+      <View className="flex-1 items-center justify-center">
+        <Text className="text-black-700 font-Alexandria text-4xl uppercase ">
+          {i18n.t("turn-on-location")}
+        </Text>
+        <Text className="m-4 p-8 text-lg/8 font-AlexandriaRegular text-center ">
+          {i18n.t("turn-on-location-text")}
+        </Text>
+      </View>
+      <View className="flex-1/2 justify-center items-center">
+        <Image
+          className="h-40 w-40 "
+          source={require("@/assets/images/location.png")}
+          height={100}
+          width={100}
+        />
+      </View>
+      <View className="w-full  p-8">
+        <TouchableOpacity
+          className="mt-8 rounded bg-black w-full  py-5 items-center justify-center"
+          onPress={getLocation}
+        >
+          <Text className="text-2xl font-AlexandriaBold capitalize text-white">
+            {i18n.t("continue")}
+          </Text>
+        </TouchableOpacity>
+      </View>
+    </SafeAreaView>
   ) : (
     <Redirect href="/" />
   );

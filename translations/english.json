@@ -1,3 +1,6 @@
 {
-  "home": "this is home screen in english"
+  "home": "this is home screen in english",
+  "turn-on-location": "turn on location",
+  "turn-on-location-text": "Khidma App requires access to your geolocation to work properly, This allows us to offer location-based services and ensure accurate results tailored to your location.",
+  "continue": "continue"
 }
