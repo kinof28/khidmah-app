@@ -20,7 +20,11 @@ const PhoneNumberInput = () => {
 
   return (
     <View className="w-full px-1 my-2">
-      <Text className={`text-lg font-AlexandriaSemiBold mb-3`}>
+      <Text
+        className={`text-lg font-AlexandriaSemiBold mb-3 ${
+          language === "ar" && "text-right"
+        }`}
+      >
         {i18n.t("phone-number")}
       </Text>
       <View className="flex flex-row bg-neutral-100 rounded-full border border-neutral-100">
@@ -49,7 +53,9 @@ const PhoneNumberInput = () => {
         {/* Phone Number Input */}
         <TextInput
           // style={styles.phoneInput}
-          className="rounded-full p-4 font-AlexandriaSemiBold text-[15px] flex-1 ${inputStyle} text-left"
+          className={`rounded-full p-4 font-AlexandriaSemiBold text-[15px] flex-1 text-left ${
+            language === "ar" && "text-right"
+          }`}
           placeholder={i18n.t("phone-number-placeholder")}
           keyboardType="phone-pad"
           value={phoneNumber}

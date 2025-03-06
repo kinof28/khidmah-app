@@ -1,5 +1,6 @@
 import InputField from "@/components/InputField";
 import { icons, images } from "@/constants";
+import { useLanguageStore } from "@/store";
 import { i18n } from "@/translations";
 import { Link } from "expo-router";
 import { useState } from "react";
@@ -10,16 +11,21 @@ const LoginScreen = () => {
     email: "",
     password: "",
   });
+  const { language } = useLanguageStore();
   return (
     <ScrollView className="flex-1 bg-white">
-      <View className="flex-1 bg-white">
+      <View className="flex-1 bg-white ">
         <View className="w-full h-[250px]">
           <Image
             source={images.SignUpHeader}
             className="z-0 w-full h-[250px]"
           />
         </View>
-        <Text className="text-2xl text-black font-Alexandria m-3">
+        <Text
+          className={`text-2xl text-black font-Alexandria m-3 ${
+            language === "ar" && "text-right"
+          }`}
+        >
           {i18n.t("welcome")} 👋
         </Text>
 

@@ -1,6 +1,7 @@
 import InputField from "@/components/InputField";
 import PhoneNumberInput from "@/components/PhoneNumberInput";
 import { icons, images } from "@/constants";
+import { useLanguageStore } from "@/store";
 import { i18n } from "@/translations";
 import { Link } from "expo-router";
 import { useRef, useState } from "react";
@@ -13,6 +14,7 @@ const SubscribeScreen = () => {
     phone: "",
     password: "",
   });
+  const { language } = useLanguageStore();
 
   return (
     <ScrollView className="flex-1 bg-white">
@@ -23,7 +25,11 @@ const SubscribeScreen = () => {
             className="z-0 w-full h-[250px]"
           />
         </View>
-        <Text className="text-2xl m-3 text-black font-Alexandria ">
+        <Text
+          className={`text-2xl m-3 text-black font-Alexandria ${
+            language === "ar" && "text-right"
+          }`}
+        >
           {i18n.t("create-account")}
         </Text>
         <View className="p-5">
@@ -64,7 +70,7 @@ const SubscribeScreen = () => {
             href="/login"
             className="text-lg text-center text-general-200 mt-10"
           >
-            {i18n.t("already-have-account")}
+            {i18n.t("already-have-account") + " "}
             <Text className="text-primary-500">{i18n.t("login")}</Text>
           </Link>
         </View>

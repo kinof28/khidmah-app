@@ -1,3 +1,4 @@
+import { useLanguageStore } from "@/store";
 import { InputFieldProps } from "@/types/type";
 import {
   TextInput,
@@ -21,6 +22,7 @@ const InputField = ({
   className,
   ...props
 }: InputFieldProps) => {
+  const { language } = useLanguageStore();
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -28,7 +30,9 @@ const InputField = ({
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View className="my-2 w-full">
           <Text
-            className={`text-lg font-AlexandriaSemiBold mb-3 ${labelStyle}`}
+            className={`text-lg font-AlexandriaSemiBold mb-3 ${labelStyle} ${
+              language === "ar" && "text-right"
+            }`}
           >
             {label}
           </Text>
@@ -39,7 +43,9 @@ const InputField = ({
               <Image source={icon} className={`w-6 h-6 ml-4 ${iconStyle}`} />
             )}
             <TextInput
-              className={`rounded-full p-4 font-AlexandriaSemiBold text-[15px] flex-1 ${inputStyle} text-left`}
+              className={`rounded-full p-4 font-AlexandriaSemiBold text-[15px] flex-1 ${inputStyle} text-left ${
+                language === "ar" && "text-right"
+              }`}
               secureTextEntry={secureTextEntry}
               {...props}
             />
