@@ -1,5 +1,6 @@
 import InputField from "@/components/InputField";
 import { icons, images } from "@/constants";
+import { i18n } from "@/translations";
 import { Link } from "expo-router";
 import { useState } from "react";
 import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
@@ -19,32 +20,32 @@ const LoginScreen = () => {
           />
         </View>
         <Text className="text-2xl text-black font-Alexandria m-3">
-          Welcome 👋
+          {i18n.t("welcome")} 👋
         </Text>
 
         <View className="p-5">
           <InputField
-            label="Email"
-            placeholder="Enter email"
+            label={i18n.t("email")}
+            placeholder={i18n.t("email-placeholder")}
             icon={icons.email}
             textContentType="emailAddress"
             value={form.email}
-            onChangeText={(value) => setForm({ ...form, email: value })}
+            onChangeText={(value: any) => setForm({ ...form, email: value })}
           />
 
           <InputField
-            label="Password"
-            placeholder="Enter password"
+            label={i18n.t("password")}
+            placeholder={i18n.t("password-placeholder")}
             icon={icons.lock}
             secureTextEntry={true}
             textContentType="password"
             value={form.password}
-            onChangeText={(value) => setForm({ ...form, password: value })}
+            onChangeText={(value: any) => setForm({ ...form, password: value })}
           />
 
           <TouchableOpacity className="bg-primary-500 p-3 rounded mt-10">
             <Text className="text-center font-Alexandria text-white text-2xl">
-              Sign In
+              {i18n.t("sign-in")}
             </Text>
           </TouchableOpacity>
 
@@ -52,8 +53,8 @@ const LoginScreen = () => {
             href="/subscribe"
             className="text-lg text-center text-general-200 mt-10"
           >
-            Don't have an account?{" "}
-            <Text className="text-primary-500">Sign Up</Text>
+            {i18n.t("don't-have-account") + " "}
+            <Text className="text-primary-500">{i18n.t("sign-up")}</Text>
           </Link>
         </View>
       </View>

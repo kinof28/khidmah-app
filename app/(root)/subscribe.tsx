@@ -1,6 +1,7 @@
 import InputField from "@/components/InputField";
 import PhoneNumberInput from "@/components/PhoneNumberInput";
 import { icons, images } from "@/constants";
+import { i18n } from "@/translations";
 import { Link } from "expo-router";
 import { useRef, useState } from "react";
 import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
@@ -23,19 +24,19 @@ const SubscribeScreen = () => {
           />
         </View>
         <Text className="text-2xl m-3 text-black font-Alexandria ">
-          Create Your Account
+          {i18n.t("create-account")}
         </Text>
         <View className="p-5">
           <InputField
-            label="Name"
-            placeholder="Enter name"
+            label={i18n.t("name")}
+            placeholder={i18n.t("name-placeholder")}
             icon={icons.person}
             value={form.name}
             onChangeText={(value: any) => setForm({ ...form, name: value })}
           />
           <InputField
-            label="Email"
-            placeholder="Enter email"
+            label={i18n.t("email")}
+            placeholder={i18n.t("email-placeholder")}
             icon={icons.email}
             textContentType="emailAddress"
             value={form.email}
@@ -46,8 +47,8 @@ const SubscribeScreen = () => {
           <PhoneNumberInput />
 
           <InputField
-            label="Password"
-            placeholder="Enter password"
+            label={i18n.t("password")}
+            placeholder={i18n.t("password-placeholder")}
             icon={icons.lock}
             secureTextEntry={true}
             textContentType="password"
@@ -56,15 +57,15 @@ const SubscribeScreen = () => {
           />
           <TouchableOpacity className="bg-primary-500 p-3 rounded mt-10">
             <Text className="text-center font-Alexandria text-white text-2xl">
-              Sign Up
+              {i18n.t("sign-up")}
             </Text>
           </TouchableOpacity>
           <Link
             href="/login"
             className="text-lg text-center text-general-200 mt-10"
           >
-            Already have an account?{" "}
-            <Text className="text-primary-500">Log In</Text>
+            {i18n.t("already-have-account")}
+            <Text className="text-primary-500">{i18n.t("login")}</Text>
           </Link>
         </View>
         {/* <ReactNativeModal

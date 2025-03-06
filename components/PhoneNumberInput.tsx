@@ -1,4 +1,5 @@
 import { useLanguageStore } from "@/store";
+import { i18n } from "@/translations";
 import React, { useState } from "react";
 import {
   View,
@@ -20,7 +21,7 @@ const PhoneNumberInput = () => {
   return (
     <View className="w-full px-1 my-2">
       <Text className={`text-lg font-AlexandriaSemiBold mb-3`}>
-        Phone Number
+        {i18n.t("phone-number")}
       </Text>
       <View className="flex flex-row bg-neutral-100 rounded-full border border-neutral-100">
         {/* Country Selector */}
@@ -34,7 +35,7 @@ const PhoneNumberInput = () => {
             lang={language}
             // when picker button press you will get the country object with dial code
             pickerButtonOnPress={(item) => {
-              console.log("chosen item: ", item);
+              // console.log("chosen item: ", item);
               setCountryCode(item.dial_code);
               setCountryFlag(item.flag);
               setCountryPickerVisible(false);
@@ -49,7 +50,7 @@ const PhoneNumberInput = () => {
         <TextInput
           // style={styles.phoneInput}
           className="rounded-full p-4 font-AlexandriaSemiBold text-[15px] flex-1 ${inputStyle} text-left"
-          placeholder="Enter phone number"
+          placeholder={i18n.t("phone-number-placeholder")}
           keyboardType="phone-pad"
           value={phoneNumber}
           onChangeText={setPhoneNumber}

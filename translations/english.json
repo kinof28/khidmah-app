@@ -2,5 +2,20 @@
   "home": "this is home screen in english",
   "turn-on-location": "turn on location",
   "turn-on-location-text": "Khidma App requires access to your geolocation to work properly, This allows us to offer location-based services and ensure accurate results tailored to your location.",
-  "continue": "continue"
+  "continue": "continue",
+  "create-account": "Create Your Account",
+  "sign-up": "Sign Up",
+  "sign-in": "Sign In",
+  "name": "Name",
+  "email": "Email",
+  "password": "Password",
+  "phone-number": "Phone Number",
+  "name-placeholder": "Enter your name",
+  "email-placeholder": "Enter your email",
+  "password-placeholder": "Enter your password",
+  "phone-number-placeholder": "Enter your phone number",
+  "already-have-account": "Already have an account?",
+  "login": "Login",
+  "welcome": "Welcome",
+  "don't-have-account": "Don't have an account?"
 }

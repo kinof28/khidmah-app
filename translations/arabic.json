@@ -2,5 +2,20 @@
   "home": "هذه هي الشاشة الرئيسية باللغة العربية",
   "turn-on-location": "تفعيل الموقع",
   "turn-on-location-text": "يتطلب تطبيق خدمة الوصول إلى موقعك الجغرافي للعمل بشكل صحيح، وهذا يسمح لنا بتقديم خدمات تعتمد على الموقع وضمان نتائج دقيقة تتناسب مع موقعك.",
-  "continue": "متابعة"
+  "continue": "متابعة",
+  "create-account": "انشاء حساب",
+  "sign-up": "تسجيل",
+  "sign-in": "تسجيل الدخول",
+  "name": "الاسم",
+  "email": "البريد الالكتروني",
+  "password": "كلمة المرور",
+  "phone-number": "رقم الهاتف",
+  "name-placeholder": "ادخل اسمك",
+  "email-placeholder": "ادخل بريدك الالكتروني",
+  "password-placeholder": "ادخل كلمة المرور",
+  "phone-number-placeholder": "ادخل رقم هاتفك",
+  "already-have-account": "هل لديك حساب؟",
+  "login": "تسجيل الدخول",
+  "welcome": "مرحبا",
+  "don't-have-account": "ليس لديك حساب؟"
 }
