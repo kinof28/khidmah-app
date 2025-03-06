@@ -1,7 +1,7 @@
 import { useLanguageStore, useLocationStore } from "@/store";
 import { i18n } from "@/translations";
 import { getLocales } from "expo-localization";
-import { Redirect } from "expo-router";
+import { Link, Redirect } from "expo-router";
 // import { Redirect } from "expo-router";
 import { Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -30,6 +30,12 @@ const HomeScreen = () => {
       <Text>
         Latitude:{latitude} Longitude:{longitude}
       </Text>
+      <Link href="/subscribe" className="p-4 text-2xl bg-slate-500 m-3 rounded">
+        <Text className="text-white font-Alexandria">Subscribe</Text>
+      </Link>
+      <Link href="/login" className="p-4 text-2xl bg-green-500 m-3 rounded">
+        <Text className="text-white font-Alexandria">login</Text>
+      </Link>
     </SafeAreaView>
   );
 };
