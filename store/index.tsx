@@ -2,12 +2,15 @@ import * as SecureStore from "expo-secure-store";
 
 import { i18n } from "@/translations";
 import { create } from "zustand";
+import { AuthStore, LanguageStore, LocationStore } from "@/types/type";
 
 export const useLocationStore = create<LocationStore>((set) => ({
   latitude: null,
   longitude: null,
+  isEnabled: false,
   setLocation: (latitude: number, longitude: number) =>
-    set({ latitude, longitude }),
+    set((state) => ({ ...state, latitude, longitude })),
+  setEnabled: (isEnabled: boolean) => set((state) => ({ ...state, isEnabled })),
 }));
 
 export const useLanguageStore = create<LanguageStore>((set) => ({

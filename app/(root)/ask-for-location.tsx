@@ -1,18 +1,13 @@
 import { Image, Text, TouchableOpacity, View } from "react-native";
 import * as Location from "expo-location";
 import { useLocationStore } from "@/store";
-import { Redirect } from "expo-router";
-import { useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { i18n } from "@/translations";
 import { icons } from "@/constants";
+import { router } from "expo-router";
 
-//Todo: fix
-//Todo: This screen should be displayed only when we don't have location permissions
 const AskForLocation = () => {
-  const { setLocation } = useLocationStore();
-  const [granted, setGranted] = useState(false);
-
+  const { setLocation, setEnabled } = useLocationStore();
   const getLocation = async () => {
     const { status } = await Location.requestForegroundPermissionsAsync();
     if (status !== "granted") {
@@ -21,9 +16,10 @@ const AskForLocation = () => {
     }
     const location = await Location.getCurrentPositionAsync({});
     setLocation(location.coords.latitude, location.coords.longitude);
-    setGranted(true);
+    setEnabled(true);
+    router.replace("/");
   };
-  return !granted ? (
+  return (
     <SafeAreaView className="flex-1 justify-start bg-primary-400 py-20">
       <View className="flex-1 items-center justify-center">
         <Text className="text-black-700 font-Alexandria text-4xl uppercase ">
@@ -52,8 +48,6 @@ const AskForLocation = () => {
         </TouchableOpacity>
       </View>
     </SafeAreaView>
-  ) : (
-    <Redirect href="/" />
   );
 };
 export default AskForLocation;

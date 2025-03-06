@@ -8,14 +8,15 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 //Todo: check if user is logged in
 const HomeScreen = () => {
-  const { latitude, longitude } = useLocationStore();
+  const { latitude, longitude, isEnabled } = useLocationStore();
   const { language, setLanguage } = useLanguageStore();
-  if (latitude == null && longitude == null) {
+  if (!isEnabled) {
     return <Redirect href="/ask-for-location" />;
   }
+
   const changeLanguage = () => {
-    console.log("i18n.locale: ", i18n.locale);
-    console.log("device local language: ", getLocales()[0].languageCode);
+    // console.log("i18n.locale: ", i18n.locale);
+    // console.log("device local language: ", getLocales()[0].languageCode);
     setLanguage(language === "en" ? "ar" : "en");
   };
   return (

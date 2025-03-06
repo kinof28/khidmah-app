@@ -3,7 +3,9 @@ import { TextInputProps } from "react-native";
 declare interface LocationStore {
   latitude: number | null;
   longitude: number | null;
+  isEnabled: boolean;
   setLocation: (latitude: number, longitude: number) => void;
+  setEnabled: (isEnabled: boolean) => void;
 }
 
 declare interface LanguageStore {
