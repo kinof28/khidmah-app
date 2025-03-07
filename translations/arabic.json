@@ -17,5 +17,7 @@
   "already-have-account": "هل لديك حساب؟",
   "login": "تسجيل الدخول",
   "welcome": "مرحبا",
-  "don't-have-account": "ليس لديك حساب؟"
+  "don't-have-account": "ليس لديك حساب؟",
+  "invalid-email": "البريد الالكتروني غير صالح",
+  "password-too-short": "يجب ان تكون كلمة المرور على الاقل 6 حروف"
 }

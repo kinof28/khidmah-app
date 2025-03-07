@@ -1,3 +1,4 @@
+import { icons } from "@/constants";
 import { useLanguageStore } from "@/store";
 import { InputFieldProps } from "@/types/type";
 import {
@@ -20,6 +21,7 @@ const InputField = ({
   inputStyle,
   iconStyle,
   className,
+  error,
   ...props
 }: InputFieldProps) => {
   const { language } = useLanguageStore();
@@ -37,7 +39,9 @@ const InputField = ({
             {label}
           </Text>
           <View
-            className={`flex flex-row justify-start items-center relative bg-neutral-100 rounded-full border border-neutral-100 focus:border-primary-500  ${containerStyle}`}
+            className={`flex flex-row justify-start items-center relative bg-neutral-100 rounded-full border border-neutral-100 focus:border-primary-500 ${
+              error && "border-red-600"
+            }  ${containerStyle}`}
           >
             {icon && (
               <Image source={icon} className={`w-6 h-6 ml-4 ${iconStyle}`} />
@@ -50,6 +54,18 @@ const InputField = ({
               {...props}
             />
           </View>
+          {error && (
+            <View
+              className={`p-1 mx-2 flex ${
+                language === "ar" ? "flex-row-reverse" : "flex-row"
+              } gap-3`}
+            >
+              <Image source={icons.danger} className="w-6 h-6" />
+              <Text className="text-orange-500 capitalize font-AlexandriaLight">
+                {error}
+              </Text>
+            </View>
+          )}
         </View>
       </TouchableWithoutFeedback>
     </KeyboardAvoidingView>
