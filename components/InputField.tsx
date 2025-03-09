@@ -22,6 +22,7 @@ const InputField = ({
   iconStyle,
   className,
   error,
+  type,
   ...props
 }: InputFieldProps) => {
   const { language } = useLanguageStore();
@@ -47,6 +48,10 @@ const InputField = ({
               <Image source={icon} className={`w-6 h-6 ml-4 ${iconStyle}`} />
             )}
             <TextInput
+              inputMode={type}
+              autoCapitalize={
+                type === "email" || secureTextEntry ? "none" : "words"
+              }
               className={`rounded-full p-4 font-AlexandriaSemiBold text-[15px] flex-1 ${inputStyle} text-left ${
                 language === "ar" && "text-right"
               }`}

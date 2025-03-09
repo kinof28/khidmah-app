@@ -1,12 +1,12 @@
+import { HelloWave } from "@/components/HelloWave";
 import InputField from "@/components/InputField";
 import { icons, images } from "@/constants";
 import { LoginDto, loginSchema } from "@/schemas";
-import { useLanguageStore } from "@/store";
+import { useAuthStore, useLanguageStore } from "@/store";
 import { i18n } from "@/translations";
-import { Link } from "expo-router";
+import { Link, router } from "expo-router";
 import { useState } from "react";
 import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
-import { set } from "zod";
 
 const LoginScreen = () => {
   const [form, setForm] = useState<LoginDto>({
@@ -17,6 +17,9 @@ const LoginScreen = () => {
     email: "",
     password: "",
   });
+  const [loading, setLoading] = useState(false);
+  const [wrongCredentials, setWrongCredentials] = useState(false);
+  const { setToken } = useAuthStore();
   const validateEmail = (): boolean => {
     try {
       loginSchema.shape.email.parse(form.email);
@@ -43,9 +46,41 @@ const LoginScreen = () => {
     setErrors(tmpErrors);
     return emailIsValid && passwordIsValid;
   };
-  const signIn = () => {
+  const signIn = async () => {
+    setWrongCredentials(false);
     if (!validateForm()) return;
-    console.log("form is Valid: ", form);
+    setLoading(true);
+    try {
+      const response = await fetch(
+        `${process.env.EXPO_PUBLIC_API_URL}/auth/customer`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email: form.email, password: form.password }),
+        }
+      );
+      if (!response.ok) {
+        setWrongCredentials(true);
+        setErrors({
+          email: " ",
+          password: " ",
+        });
+        setLoading(false);
+        return;
+      }
+      const data = await response.json();
+
+      // console.log("data: ", data.access_token);
+      setToken(data.access_token);
+      setLoading(false);
+      router.replace("/(root)/(user)");
+      // return data;
+    } catch (error) {
+      console.error("Error:", error);
+      setLoading(false);
+    }
   };
   const { language } = useLanguageStore();
   return (
@@ -57,13 +92,16 @@ const LoginScreen = () => {
             className="z-0 w-full h-[250px]"
           />
         </View>
-        <Text
-          className={`text-2xl text-black font-Alexandria m-3 ${
-            language === "ar" && "text-right"
-          }`}
-        >
-          {i18n.t("welcome")} 👋
-        </Text>
+        <View className="flex flex-row items-center">
+          <Text
+            className={`text-2xl text-black font-Alexandria m-3 ${
+              language === "ar" && "text-right"
+            }`}
+          >
+            {i18n.t("welcome")}
+          </Text>
+          <HelloWave />
+        </View>
 
         <View className="p-5">
           <InputField
@@ -73,6 +111,7 @@ const LoginScreen = () => {
             textContentType="emailAddress"
             value={form.email}
             error={errors.email}
+            type="email"
             onChangeText={(value: any) => {
               setForm({ ...form, email: value });
               setErrors({ ...errors, email: "" });
@@ -104,15 +143,23 @@ const LoginScreen = () => {
             }}
           />
 
+          {wrongCredentials && (
+            <Text className="text-center text-red-500 my-4 text-xl font-Alexandria">
+              {i18n.t("invalid-email-or-password")}
+            </Text>
+          )}
+
           <TouchableOpacity
-            className={`bg-primary-500 p-3 rounded mt-10 ${
-              errors.email !== "" || errors.password !== "" ? "opacity-50" : ""
+            className={`bg-primary-500 p-3 rounded mt-8 ${
+              errors.email !== "" || errors.password !== "" || loading
+                ? "opacity-50"
+                : ""
             }`}
             onPress={signIn}
             disabled={errors.email !== "" || errors.password !== ""}
           >
             <Text className="text-center font-Alexandria text-white text-2xl">
-              {i18n.t("sign-in")}
+              {loading ? i18n.t("loading") : i18n.t("sign-in")}
             </Text>
           </TouchableOpacity>
 

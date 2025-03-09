@@ -26,9 +26,13 @@ export const useAuthStore = create<AuthStore>((set) => ({
   user: null,
   setToken: async (token: string) => {
     await SecureStore.setItemAsync("token", token);
-    set({ token });
+    set((state) => ({ ...state, token }));
+  },
+  logout: async () => {
+    await SecureStore.deleteItemAsync("token");
+    set({ token: null, user: null });
   },
   setUser: (user: any) => {
-    set({ user });
+    set((state) => ({ ...state, user }));
   },
 }));

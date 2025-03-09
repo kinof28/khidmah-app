@@ -19,5 +19,7 @@
   "welcome": "Welcome",
   "don't-have-account": "Don't have an account?",
   "invalid-email": "Invalid email",
-  "password-too-short": "Password should be at least 6 characters"
+  "password-too-short": "Password should be at least 6 characters",
+  "invalid-email-or-password": "Invalid email or password",
+  "loading": "Loading..."
 }

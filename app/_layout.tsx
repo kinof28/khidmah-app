@@ -14,8 +14,9 @@ import "../global.css";
 import { useColorScheme } from "@/hooks/useColorScheme";
 import { i18n } from "@/translations";
 import { getLocales } from "expo-localization";
-import { useLanguageStore, useLocationStore } from "@/store";
+import { useAuthStore, useLanguageStore, useLocationStore } from "@/store";
 import * as Location from "expo-location";
+import * as SecureStore from "expo-secure-store";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -24,6 +25,7 @@ export default function RootLayout() {
   const colorScheme = useColorScheme();
   const { setLanguage } = useLanguageStore();
   const { setEnabled } = useLocationStore();
+  const { token, setToken } = useAuthStore();
   const [loading, setLoading] = useState(true);
   const [loaded] = useFonts({
     "Alexandria-Black": require("../assets/fonts/Alexandria-Black.ttf"),
@@ -40,10 +42,16 @@ export default function RootLayout() {
     i18n.enableFallback = true;
     setLanguage(getLocales()[0].languageCode ?? "en");
     Location.getForegroundPermissionsAsync().then(async ({ status }) => {
-      setLoading(false);
       if (status === Location.PermissionStatus.GRANTED) {
         setEnabled(true);
       }
+      if (!token) {
+        const tokenFromStore = await SecureStore.getItemAsync("token");
+        if (tokenFromStore) {
+          setToken(tokenFromStore);
+        }
+      }
+      setLoading(false);
     });
     if (loaded && !loading) {
       SplashScreen.hideAsync();

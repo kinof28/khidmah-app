@@ -20,9 +20,10 @@ declare interface User {
 }
 declare interface AuthStore {
   token: string | null;
-  setToken: (token: string) => void;
   user: User | null;
+  setToken: (token: string) => void;
   setUser: (user: User) => void;
+  logout: () => void;
 }
 
 // declare interface ButtonProps extends TouchableOpacityProps {
@@ -44,4 +45,5 @@ declare interface InputFieldProps extends TextInputProps {
   iconStyle?: string;
   className?: string;
   error?: string;
+  type?: "email" | "text" | "tel" | "numeric" | undefined;
 }
