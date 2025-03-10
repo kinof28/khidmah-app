@@ -21,5 +21,11 @@
   "invalid-email": "Invalid email",
   "password-too-short": "Password should be at least 6 characters",
   "invalid-email-or-password": "Invalid email or password",
-  "loading": "Loading..."
+  "loading": "Loading...",
+  "history": "History",
+  "my-profile": "My Profile",
+  "messages": "Messages",
+  "logout": "Logout",
+  "not-found": "Not Found",
+  "no-messages": "No messages yet"
 }

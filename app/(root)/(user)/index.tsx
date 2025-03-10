@@ -28,14 +28,16 @@ const UserScreen = () => {
     }
   };
   useEffect(() => {
-    const fetchDataAsync = async () => {
-      const data = await fetchUserData();
-      console.log("Fetched data:", data);
-      setLoading(false);
-      setUser(data);
-    };
-    fetchDataAsync();
-  }, []);
+    if (token) {
+      const fetchDataAsync = async () => {
+        const data = await fetchUserData();
+        console.log("Fetched data:", data);
+        setLoading(false);
+        setUser(data);
+      };
+      fetchDataAsync();
+    }
+  }, [token]);
   return (
     <View className="bg-white flex-1 justify-center items-center">
       <Text>User Screen</Text>
