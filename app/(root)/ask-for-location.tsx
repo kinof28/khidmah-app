@@ -1,13 +1,16 @@
 import { Image, Text, TouchableOpacity, View } from "react-native";
 import * as Location from "expo-location";
-import { useLocationStore } from "@/store";
+import { useLanguageStore, useLocationStore } from "@/store";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { i18n } from "@/translations";
 import { icons } from "@/constants";
 import { router } from "expo-router";
+import ChangeLanguageButton from "@/components/ChangeLanguageButton";
 
 const AskForLocation = () => {
   const { setLocation, setEnabled } = useLocationStore();
+  const { language } = useLanguageStore();
+  // console.log("language: ", language);
   const getLocation = async () => {
     const { status } = await Location.requestForegroundPermissionsAsync();
     if (status !== "granted") {
@@ -21,6 +24,9 @@ const AskForLocation = () => {
   };
   return (
     <SafeAreaView className="flex-1 justify-start bg-primary-400 py-20">
+      <View className="flex-row items-center justify-end px-8">
+        <ChangeLanguageButton />
+      </View>
       <View className="flex-1 items-center justify-center">
         <Text className="text-black-700 font-Alexandria text-4xl uppercase ">
           {i18n.t("turn-on-location")}
