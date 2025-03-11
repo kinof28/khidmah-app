@@ -9,10 +9,10 @@ const ChangeLanguageButton = () => {
   };
   return (
     <TouchableOpacity className="rounded" onPress={handleLanguageChange}>
-      {language === "en" ? (
-        <Image source={images.englishFlag} className="w-16 h-12" />
-      ) : (
+      {language === "ar" ? (
         <Image source={images.arabicFlag} className="w-16 h-12" />
+      ) : (
+        <Image source={images.englishFlag} className="w-16 h-12" />
       )}
     </TouchableOpacity>
   );
