@@ -39,7 +39,6 @@ const MessagesScreen = () => {
     //   setUser(data);
     // };
     // fetchDataAsync();
-    console.log("language", language);
   }, []);
   return (
     <SafeAreaView className="flex-1 bg-white p-5">

@@ -28,5 +28,7 @@
   "messages": "الرسائل",
   "logout": "تسجيل الخروج",
   "not-found": "غير موجود",
-  "no-messages": "لا يوجد رسائل بعد"
+  "no-messages": "لا يوجد رسائل بعد",
+  "what-service": "ما هي الخدمة التي تحتاجها؟",
+  "choose-service": "اختر خدمة"
 }

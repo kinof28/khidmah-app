@@ -1,6 +1,9 @@
 import { Tabs } from "expo-router";
 import { Image, ImageSourcePropType, View } from "react-native";
 import { icons } from "@/constants";
+import { useAuthStore } from "@/store";
+import { useEffect, useState } from "react";
+import Splash from "@/components/Splash";
 
 const TabIcon = ({
   source,
@@ -24,7 +27,45 @@ const TabIcon = ({
 );
 
 const UserLayout = () => {
-  return (
+  const { user, token, setUser } = useAuthStore();
+  const [loading, setLoading] = useState(true);
+  const fetchUserData = async () => {
+    try {
+      const response = await fetch(
+        process.env.EXPO_PUBLIC_API_URL + "/customer/profile",
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error(`Error: ${response.status}`);
+      }
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error("Request failed:", error);
+    }
+  };
+  useEffect(() => {
+    if (token) {
+      const fetchDataAsync = async () => {
+        const data = await fetchUserData();
+        console.log("Fetched data:", data);
+        setLoading(false);
+        setUser(data);
+      };
+      fetchDataAsync();
+    }
+  }, [token]);
+
+  return loading ? (
+    <Splash />
+  ) : (
     <Tabs
       initialRouteName="index"
       screenOptions={{

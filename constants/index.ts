@@ -11,6 +11,9 @@ import profile from "@/assets/icons/profile.png";
 import message from "@/assets/images/message.png";
 import englishFlag from "@/assets/images/flag-gb.png";
 import arabicFlag from "@/assets/images/flag-sa.png";
+import logo from "@/assets/images/logo.png";
+import search from "@/assets/icons/search.png";
+
 export const icons = {
   LocationSVG,
   person,
@@ -21,6 +24,7 @@ export const icons = {
   list,
   chat,
   profile,
+  search,
 };
 
 export const images = {
@@ -28,4 +32,5 @@ export const images = {
   message,
   englishFlag,
   arabicFlag,
+  logo,
 };

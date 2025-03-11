@@ -27,5 +27,7 @@
   "messages": "Messages",
   "logout": "Logout",
   "not-found": "Not Found",
-  "no-messages": "No messages yet"
+  "no-messages": "No messages yet",
+  "what-service": "What service are you looking for?",
+  "choose-service": "Choose a Service"
 }
