@@ -1,9 +1,10 @@
 import { Tabs } from "expo-router";
 import { Image, ImageSourcePropType, View } from "react-native";
 import { icons } from "@/constants";
-import { useAuthStore } from "@/store";
+import { useAuthStore, useLocationStore } from "@/store";
 import { useEffect, useState } from "react";
 import Splash from "@/components/Splash";
+import * as Location from "expo-location";
 
 const TabIcon = ({
   source,
@@ -28,6 +29,7 @@ const TabIcon = ({
 
 const UserLayout = () => {
   const { user, token, setUser } = useAuthStore();
+  const { setLocation } = useLocationStore();
   const [loading, setLoading] = useState(true);
   const fetchUserData = async () => {
     try {
@@ -51,11 +53,18 @@ const UserLayout = () => {
       console.error("Request failed:", error);
     }
   };
+  const getLocation = async () => {
+    const location = await Location.getCurrentPositionAsync({});
+    console.log("location: ", location);
+    const { latitude, longitude } = location.coords;
+    setLocation(latitude, longitude);
+  };
   useEffect(() => {
     if (token) {
       const fetchDataAsync = async () => {
         const data = await fetchUserData();
         console.log("Fetched data:", data);
+        await getLocation();
         setLoading(false);
         setUser(data);
       };

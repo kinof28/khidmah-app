@@ -8,7 +8,7 @@ const SelectService = () => {
   const { user } = useAuthStore();
   const { language } = useLanguageStore();
   return (
-    <View className="flex-1 bg-blue-500 p-6 ">
+    <View className="flex-1 bg-blue-500 p-6">
       <View className="flex flex-row items-center">
         <HelloWave />
         <Text className="text-white text-3xl font-Alexandria mx-3 tracking-widest capitalize">
@@ -36,6 +36,7 @@ const SelectService = () => {
             language === "ar" && "text-right"
           }`}
           placeholder={i18n.t("choose-service")}
+          editable={false}
         />
       </View>
     </View>
